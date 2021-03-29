@@ -1,8 +1,9 @@
 import React, { useState, useEffect  } from 'react';
+import Buttons from './components/PageButton';
 import axios from 'axios';
 import './App.css';
 
-const debugMode = true;
+const debugMode = false;
 debugMode && console.log('-- Debug mode is ACTIVATED --');
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
   useEffect(() => {
     setError('');
     toggleLoading(true);
+
     try { 
       fetchData();
     } 
@@ -31,14 +33,20 @@ function App() {
   }, [])
 
   return (
+    <>
     <div>
-      {loading && <p>Data wordt opgehaald...</p>}
+      {loading && (<p>Data wordt opgehaald...</p>)}
+      <Buttons name="vorige"/>
+      <Buttons name="volgende"/>
       <ul>
           {pokemons && pokemons.map((pokemon) => (
-          <li>{pokemon.name}</li>
+          <li key={pokemon.name}>{pokemon.name}</li>
         ))}
       </ul>
     </div>
+
+    {error && (<span>Ho! er gaat iets fout hier </span>)}
+    </>
   );
 }
 
