@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Pokemons from './components/Pokemons';
+import logo from './assets/Pokemon-Emblem.jpeg';
 import './App.css';
 
 const debugMode = false;
@@ -33,14 +34,18 @@ function App() {
 
   return (
     <>
-      <div>
+      <header>
+        <img  className="logo-header" alt="Pokemon Logo" src={logo}/>
+      </header>
+      <div className="card-container">
             {pokemons && pokemons.map((pokemon) => {
-              <p>{pokemon.name}</p>
               return (
                 <Pokemons name={pokemon.name}/>
               )
               })}
       </div>
+      {loading && <p>Data wordt geladen...</p>}
+        {error && <p>Whoops, we hebben een probleempje!</p>}
     </>
   );
 }

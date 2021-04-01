@@ -1,15 +1,30 @@
 .pokemon-card {
     background-color: grey;
     width: 200px;
-    height: 300px; 
+    height: 275px; 
     border: 2px solid black;
     margin: 20px;
     justify-content: center;
     flex-direction: column;
     text-align: center;
+    padding: 10px;
 }
 
 .pokemon-name {
-    font-weight: bold;
+    font-family: 'New Tegomin', serif;
+    font-weight: bolder;
     text-transform: uppercase;
+}
+
+.ability {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: lightgrey;
+    border: 2px solid blue;
+    border-radius: 20px;
+    margin: 5px; 
+    padding: 2px;
+    width: 80%; 
+    height: 25px;
+    list-style-type: none;
+    justify-content: center;
 }

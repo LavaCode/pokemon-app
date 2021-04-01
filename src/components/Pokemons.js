@@ -34,11 +34,15 @@ function Pokemons({name}) {
     return(
       <>
         <div className="pokemon-card">
-          <img src={pokemonsDetails.sprites?.front_shiny}/>
+          <img src={pokemonsDetails.sprites?.front_shiny} />
           <p className="pokemon-name">{pokemonsDetails.name}</p>
+          <ul>
+            {abilities && abilities.map((pokemonAbilities)=> {
+              return <li className="ability" key={pokemonAbilities.ability.name}>{pokemonAbilities.ability.name}</li>
+            })}
+          </ul>
         </div>
-
-        {loading && <p>Whoops, we hebben een probleempje!</p>}
+        {loading && <p>Data wordt geladen...</p>}
         {error && <p>Whoops, we hebben een probleempje!</p>}
       </>
     );

@@ -1,9 +1,17 @@
 body {
-    background-color: rgb(255, 209, 5);
+    background-color: rgb(255, 204, 1);
 }
 
-.pokemon {
-    background-color: coral;
-    margin: 10px;
-    padding: 10px;
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around
+}
+
+.logo-header {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    height: 50%;
+    width: 50%;
 }
