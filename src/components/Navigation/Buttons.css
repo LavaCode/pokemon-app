@@ -1,0 +1,14 @@
+.button {
+    background: rgb(44, 107, 176);
+    border: 1px solid white;
+    color: white;
+    margin: 2px;
+    width: 100px;
+    height: 35px;
+    font-size: 10px;
+}
+
+.button:disabled {
+    background: grey;
+    color: lightgrey;
+}

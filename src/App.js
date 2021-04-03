@@ -1,42 +1,52 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Pokemons from './components/Pokemons';
+import Pokemons from './components/PokemonCard/Pokemons';
+import Button from './components/Navigation/Buttons';
 import logo from './assets/Pokemon-Emblem.jpeg';
 import './App.css';
 
-const debugMode = false;
-debugMode && console.log('-- Debug App is ACTIVATED --');
+const debugMode = true;
+debugMode && console.log('-- DEBUG APP IS ACTIVATED --');
 
 function App() {
   const [pokemons, setPokemons] = useState([])
+  const [offset, setOffset] = useState(0);
   const [error, setError] = useState('');
   const [loading, toggleLoading] = useState(false); 
-  
+
     useEffect(() => {
       setError('');
-      toggleLoading(true);
-      try { 
-        fetchData();
-      } 
-      catch(e) {
-        console.error(e);
-        setError(e.message);
-      } 
-      toggleLoading(false);
-    }, [])
+      fetchData();
+    }, [offset]);
   
     async function fetchData() {
-      const result = await axios.get(`https://pokeapi.co/api/v2/pokemon`);
-      debugMode && console.log(result.data);
-      setPokemons(result.data.results);
-      debugMode && console.log(pokemons);
+      try {
+        toggleLoading(true);
+        const result = await axios.get(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=20`);
+        toggleLoading(false);
+        setPokemons(result.data.results);
+        debugMode && console.log(pokemons);
+      } catch(e) {
+        toggleLoading(false);
+        setError(e);
+        debugMode && console.error(`Probleem: ${e.response}`);
+      }
     }
 
   return (
     <>
       <header>
-        <img  className="logo-header" alt="Pokemon Logo" src={logo}/>
+        <img  className="logo-header" alt="Pokemon main Logo" src={logo}/>
       </header>
+
+      {loading && <span className="loading-data">Data wordt geladen...</span>}
+      {error && <span className="error-message">Whoops! Er is iets misgegaan! Probeer het later opnieuw!</span>}
+      
+      <div className="navigation-buttons">
+        {/* <Button name="Volgende pagina" changeOffset={offset => alert(offset)}/> */}
+        <Button name="Volgende pagina" changeOffset={offset => setOffset(offset)} />
+        <Button name="Vorige pagina" changeOffset={offset => setOffset(offset)} />
+      </div>
       <div className="card-container">
             {pokemons && pokemons.map((pokemon) => {
               return (
@@ -44,8 +54,6 @@ function App() {
               )
               })}
       </div>
-      {loading && <p>Data wordt geladen...</p>}
-        {error && <p>Whoops, we hebben een probleempje!</p>}
     </>
   );
 }
