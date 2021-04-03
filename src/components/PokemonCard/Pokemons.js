@@ -2,9 +2,6 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import './Pokemons.css';
 
-const debugApi = false; 
-debugApi && console.log(` -- DEBUG POKEMON ACTIVATED -- `)
-
 function Pokemons({name}) {
     const [pokemonsDetails, setPokemonsDetails] = useState([]);
     const [abilities, setAbilities] = useState([]);
@@ -30,10 +27,6 @@ function Pokemons({name}) {
         setAbilities(result.data.abilities);
         setMoves(result.data.moves);
         setWeight(result.data.weight);
-      debugApi && console.log(`Name: ${pokemonsDetails.name}`);
-      debugApi && console.log(`Abilities: ${abilities.length}`);
-      debugApi && console.log(`Moves: ${moves.length}`);
-      debugApi && console.log(`Weight: ${weight}`);
     }
 
     return(

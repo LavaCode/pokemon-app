@@ -5,9 +5,6 @@ import Button from './components/Navigation/Buttons';
 import logo from './assets/Pokemon-Emblem.jpeg';
 import './App.css';
 
-const debugMode = true;
-debugMode && console.log('-- DEBUG APP IS ACTIVATED --');
-
 function App() {
   const [pokemons, setPokemons] = useState([])
   const [offset, setOffset] = useState(0);
@@ -22,11 +19,9 @@ function App() {
           const result = await axios.get(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=20`);
           toggleLoading(false);
           setPokemons(result.data.results);
-          debugMode && console.log(pokemons);
         } catch(e) {
           toggleLoading(false);
           setError(e);
-          debugMode && console.error(`Probleem: ${e.response}`);
         }
       }
       fetchData();
@@ -51,7 +46,6 @@ function App() {
               )
               })}
       </div>
-
       {loading && <span className="loading-data">Data wordt geladen...</span>}
       {error && <span className="error-message">Whoops! Er is iets misgegaan! Probeer het later opnieuw!</span>}
     </>
