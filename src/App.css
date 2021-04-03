@@ -1,0 +1,31 @@
+body {
+    background-color: rgb(255, 204, 1);
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 0px;
+}
+
+.logo-header {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    height: 50%;
+    width: 50%;
+}
+
+.navigation-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.error-message {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-weight: bolder;
+}
