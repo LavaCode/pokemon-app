@@ -16,31 +16,28 @@ function App() {
 
     useEffect(() => {
       setError('');
-      fetchData();
-    }, [offset]);
-  
-    async function fetchData() {
-      try {
-        toggleLoading(true);
-        const result = await axios.get(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=20`);
-        toggleLoading(false);
-        setPokemons(result.data.results);
-        debugMode && console.log(pokemons);
-      } catch(e) {
-        toggleLoading(false);
-        setError(e);
-        debugMode && console.error(`Probleem: ${e.response}`);
+      async function fetchData() {
+        try {
+          toggleLoading(true);
+          const result = await axios.get(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=20`);
+          toggleLoading(false);
+          setPokemons(result.data.results);
+          debugMode && console.log(pokemons);
+        } catch(e) {
+          toggleLoading(false);
+          setError(e);
+          debugMode && console.error(`Probleem: ${e.response}`);
+        }
       }
-    }
+      fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [offset]);
 
   return (
     <>
       <header>
         <img  className="logo-header" alt="Pokemon main Logo" src={logo}/>
       </header>
-
-      {loading && <span className="loading-data">Data wordt geladen...</span>}
-      {error && <span className="error-message">Whoops! Er is iets misgegaan! Probeer het later opnieuw!</span>}
       
       <div className="navigation-buttons">
         {/* <Button name="Volgende pagina" changeOffset={offset => alert(offset)}/> */}
@@ -50,10 +47,13 @@ function App() {
       <div className="card-container">
             {pokemons && pokemons.map((pokemon) => {
               return (
-                <Pokemons name={pokemon.name}/>
+                <Pokemons key={pokemon.name} name={pokemon.name}/>
               )
               })}
       </div>
+
+      {loading && <span className="loading-data">Data wordt geladen...</span>}
+      {error && <span className="error-message">Whoops! Er is iets misgegaan! Probeer het later opnieuw!</span>}
     </>
   );
 }

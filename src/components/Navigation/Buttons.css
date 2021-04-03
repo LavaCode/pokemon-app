@@ -1,4 +1,4 @@
-.button {
+.navigation-button {
     background: rgb(44, 107, 176);
     border: 1px solid white;
     color: white;
@@ -8,7 +8,7 @@
     font-size: 10px;
 }
 
-.button:disabled {
+.navigation-button:disabled {
     background: grey;
     color: lightgrey;
 }

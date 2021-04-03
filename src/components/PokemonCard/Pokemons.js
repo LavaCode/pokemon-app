@@ -11,6 +11,7 @@ function Pokemons({name}) {
     const [moves, setMoves] = useState([]);
     const [weight, setWeight] = useState(0);
     const [loading, toggleLoading] = useState(false); 
+    const [newData, toggleNewData] = useState(false);
 
     useEffect(() => {
       try { 
@@ -19,9 +20,11 @@ function Pokemons({name}) {
       catch(e) {
         console.error(e);
       } 
-    }, [])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [newData])
   
     async function fetchData() {
+      toggleNewData(false);
       toggleLoading(true);
       const result = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
       toggleLoading(false);
