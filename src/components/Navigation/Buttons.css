@@ -1,5 +1,5 @@
 .navigation-button {
-    background: rgb(44, 107, 176);
+    background-color: rgb(44, 107, 176);
     border: 1px solid white;
     color: white;
     margin: 2px;
@@ -9,6 +9,13 @@
     justify-content: center;
 }
 
+.navigation-button:focus {
+    outline: none;
+}
+
+.navigation-button:hover {
+    background-color: rgb(76, 126, 29);
+}
 .navigation-button:disabled {
     background: grey;
     color: lightgrey;

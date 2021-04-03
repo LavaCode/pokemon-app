@@ -19,13 +19,13 @@ function Buttons(props) {
     if(props.name === 'Vorige pagina'){
       return (
         <div>
-          <button onClick={handleClick} className="navigation-button" disabled={variableOffset === 0}>{props.name}</button> 
+          <button type="button" onClick={handleClick} className="navigation-button" disabled={variableOffset === 0}>{props.name}</button> 
         </div>
         );
       } else if (props.name === 'Volgende pagina'){
       return (
         <div>
-          <button onClick={handleClick} className="navigation-button" disabled={variableOffset === 1100}>{props.name}</button> 
+          <button type="button" onClick={handleClick} className="navigation-button" disabled={variableOffset === 1100}>{props.name}</button> 
         </div>
       );
    } 
