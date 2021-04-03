@@ -11,7 +11,6 @@ function Pokemons({name}) {
     const [moves, setMoves] = useState([]);
     const [weight, setWeight] = useState(0);
     const [loading, toggleLoading] = useState(false); 
-    const [newData, toggleNewData] = useState(false);
 
     useEffect(() => {
       try { 
@@ -21,17 +20,16 @@ function Pokemons({name}) {
         console.error(e);
       } 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [newData])
+    }, [])
   
     async function fetchData() {
-      toggleNewData(false);
       toggleLoading(true);
       const result = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
       toggleLoading(false);
-      setPokemonsDetails(result.data);
-      setAbilities(result.data.abilities);
-      setMoves(result.data.moves);
-      setWeight(result.data.weight);
+        setPokemonsDetails(result.data);
+        setAbilities(result.data.abilities);
+        setMoves(result.data.moves);
+        setWeight(result.data.weight);
       debugApi && console.log(`Name: ${pokemonsDetails.name}`);
       debugApi && console.log(`Abilities: ${abilities.length}`);
       debugApi && console.log(`Moves: ${moves.length}`);

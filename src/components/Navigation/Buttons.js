@@ -9,11 +9,10 @@ function Buttons(props) {
       if(props.name === 'Volgende pagina') {
         variableOffset += 20;
         props.changeOffset(variableOffset);
-        // console.log(variableOffset);
-      } else if (props.name === 'Vorige pagina') {
+      } 
+      else if (props.name === 'Vorige pagina') {
         variableOffset -= 20;
         props.changeOffset(variableOffset);
-        // console.log(variableOffset);
       } 
     }
 
@@ -29,7 +28,7 @@ function Buttons(props) {
           <button onClick={handleClick} className="navigation-button" disabled={variableOffset === 1100}>{props.name}</button> 
         </div>
       );
-      } 
+   } 
 }
 
 export default Buttons;
